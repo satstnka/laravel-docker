@@ -1,0 +1,12 @@
+1. docker-compose up -d
+2. .env ファイルを編集
+      DB_HOST の値 ・・・ docker-compose.yml で指定したコンポーネントの名前(14行目)
+3. Laravel の コンポーネント環境の中に入る
+   コンポーネント名の確認
+       docker ps
+   コンポーネント環境の中に入る   
+       dokcer exec -it (コンポーネント名) /bin/bash
+
+   Migration 
+       コンポーネント内で
+          php artisan migrate

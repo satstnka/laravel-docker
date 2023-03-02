@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  app:
+    image: php:7.4-apache
+    tty: true    
+    ports:
+      - 127.0.0.1:8000:80
+    build: ./docker/app
+    volumes:
+      - ./app:/var/www/html/app
+
+
+  mysql:
+    image: mysql:8.0.31
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test_db
+    ports:
+        - 127.0.0.1:3306:3306
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.0
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+    ports:
+      - 127.0.0.1:8081:80
